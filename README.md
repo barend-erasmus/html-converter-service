@@ -21,8 +21,3 @@ Start project
 `npm start`
 
 Browse `http://localhost:3000/api`
-
-
-## Installing for production
-
-`curl -s https://raw.githubusercontent.com/barend-erasmus/html-converter-service/master/install.sh | bash -s`
