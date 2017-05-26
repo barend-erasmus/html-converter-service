@@ -24,4 +24,4 @@ Browse `http://localhost:3000/api`
 
 `docker build --no-cache -t html-converter-service ./`
 
-`docker run -d -p 8080:3000 --name html-converter-service -v /logs:/logs -v /opt/html-converter-api:/opt/html-converter-api -t html-converter-service`
+`docker run -d -p 8080:3000 --name html-converter-service -v /logs:/logs -v /opt/html-converter-service:/opt/html-converter-service -t html-converter-service`
