@@ -60,7 +60,7 @@ export class WebApi {
     }
 }
 
-const port = config.api.port;
+const port = 3000;
 const api = new WebApi(express(), port);
 api.run();
 

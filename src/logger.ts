@@ -10,7 +10,7 @@ const logger = new (winston.Logger)({
     new (winston.transports.Console)({ level: 'debug' }),
     new (winston.transports.File)({
       filename: path.join(config.logging.path, 'html-converter-api.log'),
-      level: config.logging.level,
+      level: 'debug',
     }),
   ],
 });
