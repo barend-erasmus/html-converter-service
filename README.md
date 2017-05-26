@@ -1,7 +1,5 @@
 # html-converter-service
 
-![](http://jenkins.developersworkspace.co.za:8080/job/html-converter-service-nightly/badge/icon)
-
 ## Getting Started
 
 Clone the repository
