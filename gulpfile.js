@@ -3,31 +3,23 @@ var gulp = require('gulp');
 var clean = require('gulp-clean');
 var ts = require('gulp-typescript');
 var rename = require("gulp-rename");
+var GulpSSH = require('gulp-ssh');
 var sequence = require('run-sequence');
+var argv = require('yargs').argv;
 
 // Compiles typescript files
-gulp.task('compile:ts.dev', function () {
+gulp.task('compile:ts', function () {
     return gulp
         .src(["./src/**/*.ts"], { base: './src' })
-        .pipe(ts({ module: 'commonjs', target: 'es6', noImplicitAny: false, allowJs: true, allowUnreachableCode: true }))
+        .pipe(ts({ module: 'commonjs', target: 'es6', noImplicitAny: false }))
         .pipe(gulp.dest('./dist'));
 });
 
 // Removes compiled js files
-gulp.task('clean:js', function () {
+gulp.task('clean', function () {
     return gulp
         .src([
-            './dist/**/*.js',
-        ], { read: false })
-        .pipe(clean())
-});
-
-
-// Removes compiled js files
-gulp.task('clean:dist', function () {
-    return gulp
-        .src([
-            './dist'
+            './dist/**/*.js'
         ], { read: false })
         .pipe(clean())
 });
@@ -40,22 +32,6 @@ gulp.task('copy:package.json', function () {
         .pipe(gulp.dest('./dist'));
 });
 
-// Copies 'package.json' file to build directory
-gulp.task('copy:web.config', function () {
-    return gulp
-        .src('./web.config')
-        .pipe(gulp.dest('./dist'));
-});
-
-
-// Compiles typescript files
-gulp.task('compile:ts.prod', function () {
-    return gulp
-        .src(["./src/**/*.ts"], { base: './src' })
-        .pipe(ts({ module: 'commonjs', target: 'es6', noImplicitAny: false, allowJs: true, allowUnreachableCode: true }))
-        .pipe(gulp.dest('./dist'));
-});
-
 // Renames config file
 gulp.task('rename:config', function () {
     return gulp.src('./dist/config.prod.js', { base: process.cwd() })
@@ -64,11 +40,28 @@ gulp.task('rename:config', function () {
 });
 
 
+gulp.task('build', function (done) {
+    sequence('clean', 'compile:ts', 'copy:package.json', 'rename:config', done);
+});
+
 gulp.task('build:dev', function (done) {
-    sequence('clean:js', 'compile:ts.dev', done);
+    sequence('clean', 'compile:ts', 'copy:package.json', done);
 });
 
-gulp.task('build:prod', function (done) {
-    sequence('clean:dist', 'compile:ts.prod', 'copy:package.json', 'rename:config', 'copy:web.config', done);
-});
+gulp.task('publish', function () {
+    var config = {
+        host: argv.host,
+        port: 22,
+        username: argv.username,
+        password: argv.password
+    };
 
+    var gulpSSH = new GulpSSH({
+        ignoreErrors: false,
+        sshConfig: config
+    });
+
+    return gulp
+        .src(['./dist/**'])
+        .pipe(gulpSSH.dest(argv.dest));
+})
