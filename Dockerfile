@@ -1,5 +1,7 @@
 FROM node:6.9.4
 
+WORKDIR  /opt/html-converter-api
+
 RUN npm install pm2 -g
 
 RUN npm install --only=production
