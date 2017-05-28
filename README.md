@@ -21,9 +21,3 @@ Start project
 `npm start`
 
 Browse `http://localhost:3000/api`
-
-## Docker Setup 
-
-`docker build --no-cache -t html-converter-service ./`
-
-`docker run -d -p 8080:3000 --name html-converter-service -v /logs:/logs -v /opt/html-converter-service:/opt/html-converter-service -t html-converter-service`
