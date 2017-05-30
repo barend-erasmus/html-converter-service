@@ -18,7 +18,7 @@
     "directories": [
         {
             "source": "$workspace/dist",
-            "destination": "/opt/html-converter-service-service"
+            "destination": "/opt/html-converter-service"
         }
     ],
     "files": [
