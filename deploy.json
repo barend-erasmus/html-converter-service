@@ -1,0 +1,30 @@
+{
+    "machine": {
+        "host": "$host",
+        "username": "$username",
+        "password": "$password"
+    },
+    "commands": [
+        "sudo apt-get update",
+        "curl -sL https://deb.nodesource.com/setup_7.x | sudo -E bash -",
+        "sudo apt-get install -y nodejs",
+
+        "npm --prefix /opt/html-converter-service install",
+        "docker stop html-converter-service",
+        "docker rm html-converter-service",
+        "docker build --no-cache -t html-converter-service /docker-uploads/html-converter-service",
+        "docker run -d -p 8080:3000 --name html-converter-service -v /logs:/logs -v /opt/html-converter-service:/opt/html-converter-service -t html-converter-service"
+    ],
+    "directories": [
+        {
+            "source": "$workspace/dist",
+            "destination": "/opt/html-converter-service-service"
+        }
+    ],
+    "files": [
+        {
+            "source": "$workspace/Dockerfile",
+            "destination": "/docker-uploads/html-converter-service/Dockerfile"
+        }
+    ]
+}
