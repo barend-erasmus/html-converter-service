@@ -1,11 +1,6 @@
 export let config = {
-    tempPath: './src/temp',
     logging: {
-        path: './'
-    }
+        path: './',
+    },
+    tempPath: './src/temp',
 }
-
-
-
-
-
