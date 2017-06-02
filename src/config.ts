@@ -3,4 +3,4 @@ export let config = {
         path: './',
     },
     tempPath: './src/temp',
-}
+};

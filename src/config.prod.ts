@@ -3,4 +3,4 @@ export let config = {
         path: '/logs',
     },
     tempPath: './temp',
-}
+};
