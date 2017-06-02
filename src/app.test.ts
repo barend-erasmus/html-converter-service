@@ -9,7 +9,7 @@ import { WebApi } from './app';
 
 let api;
 
-describe('POST /api//htmlconverter/convertpdf', function() {
+describe('POST /api/htmlconverter/convertpdf', function() {
   this.timeout(20000);
 
   beforeEach(() => {
@@ -26,7 +26,7 @@ describe('POST /api//htmlconverter/convertpdf', function() {
   });
 });
 
-describe('POST /api//htmlconverter/convertpng', function() {
+describe('POST /api/htmlconverter/convertpng', function() {
   this.timeout(20000);
 
   beforeEach(() => {
