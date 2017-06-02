@@ -12,8 +12,14 @@ import { HtmlConverterRouter } from './routes/htmlConverter';
 // Imports logger
 import { logger } from './logger';
 
-// Imports configurations
-import { config } from './config';
+// Import configurations
+let config = require('./config').config;
+
+let argv = require('yargs').argv;
+
+if (argv.prod) {
+  config = require('./config.prod').config;
+}
 
 export class WebApi {
 
@@ -49,7 +55,8 @@ export class WebApi {
     }
 
     private configureRoutes(app: express.Express) {
-        app.use(`/api/htmlconverter`, new HtmlConverterRouter().GetRouter());
+        app.post('/api/htmlconverter/convertpdf', HtmlConverterRouter.convertPdf);
+        app.post('/api/htmlconverter/convertpng', HtmlConverterRouter.convertPng);
     }
 
     private configureErrorHandling(app: express.Express) {

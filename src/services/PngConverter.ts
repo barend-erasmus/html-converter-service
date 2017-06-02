@@ -6,8 +6,14 @@ import * as stream from 'stream';
 import * as uuid from 'uuid';
 import * as webshot from 'webshot';
 
-// Imports configuration
-import { config } from './../config';
+// Import configurations
+let config = require('./../config').config;
+
+let argv = require('yargs').argv;
+
+if (argv.prod) {
+  config = require('./../config.prod').config;
+}
 
 import { IConverter } from './IConverter';
 

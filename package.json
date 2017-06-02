@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "start": "gulp build:dev & node ./dist/app.js",
-    "test": "gulp build:dev & mocha ./dist/**/*.test.js & gulp clean:js",
-    "cover": "gulp build:dev & istanbul cover node_modules/mocha/bin/_mocha --root ./dist ./dist/**/*.test.js & gulp clean:js"
+    "start": "tsc & node ./src/app.js",
+    "test": "tsc & mocha ./src/**/*.test.js",
+    "cover": "tsc & istanbul cover node_modules/mocha/bin/_mocha --root ./src ./src/**/*.test.js"
   },
   "repository": {
     "type": "git",
@@ -26,22 +26,17 @@
     "mssql": "^4.0.1",
     "phantom-html-to-pdf": "^0.5.0",
     "webshot": "^0.18.0",
-    "winston": "^2.3.1"
+    "winston": "^2.3.1",
+    "yargs": "^8.0.1"
   },
   "devDependencies": {
     "@types/chai": "^3.4.35",
     "@types/express": "^4.0.35",
     "@types/mocha": "^2.2.40",
     "chai": "^3.5.0",
-    "gulp": "^3.9.1",
-    "gulp-clean": "^0.3.2",
-    "gulp-rename": "^1.2.2",
-    "gulp-typescript": "^3.1.6",
     "mocha": "^3.2.0",
-    "run-sequence": "^1.2.2",
     "supertest": "^3.0.0",
     "tslint": "^5.0.0",
-    "typescript": "^2.2.2",
-    "yargs": "^8.0.1"
+    "typescript": "^2.2.2"
   }
 }

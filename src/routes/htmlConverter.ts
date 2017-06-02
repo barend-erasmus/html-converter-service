@@ -5,28 +5,21 @@ import * as stream from 'stream';
 
 import { ServiceFactory } from './base';
 
-// Import configuration
-import { config } from './../config';
+// Import configurations
+let config = require('./../config').config;
+
+let argv = require('yargs').argv;
+
+if (argv.prod) {
+  config = require('./../config.prod').config;
+}
 
 // Imports logger
 import { logger } from './../logger';
 
 export class HtmlConverterRouter {
 
-    private router = express.Router();
-
-    constructor() {
-
-        this.router.post('/convertpdf', this.convertPdf);
-        this.router.post('/convertpng', this.convertPng);
-
-    }
-
-    public GetRouter() {
-        return this.router;
-    }
-
-    private convertPdf(req: Request, res: Response, next: () => void) {
+    public static convertPdf(req: Request, res: Response, next: () => void) {
 
         const html = req.body.html;
 
@@ -40,7 +33,7 @@ export class HtmlConverterRouter {
         });
     }
 
-    private convertPng(req: Request, res: Response, next: () => void) {
+    public static convertPng(req: Request, res: Response, next: () => void) {
 
         const html = req.body.html;
 

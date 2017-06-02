@@ -1,8 +1,14 @@
 // Imports
 import * as stream from 'stream';
 
-// Imports configuraton
-import { config } from './../config';
+// Import configurations
+let config = require('./../config').config;
+
+let argv = require('yargs').argv;
+
+if (argv.prod) {
+  config = require('./../config.prod').config;
+}
 
 export abstract class IConverter {
 

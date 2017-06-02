@@ -5,8 +5,14 @@ import * as stream from 'stream';
 // Imports services
 import { IConverter } from './IConverter';
 
-// Imports configurations
-import { config } from './../config';
+// Import configurations
+let config = require('./../config').config;
+
+let argv = require('yargs').argv;
+
+if (argv.prod) {
+  config = require('./../config.prod').config;
+}
 
 describe('IConverter', () => {
 

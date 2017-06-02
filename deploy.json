@@ -17,11 +17,15 @@
     ],
     "directories": [
         {
-            "source": "$workspace/dist",
+            "source": "$workspace/src",
             "destination": "/opt/html-converter-service"
         }
     ],
     "files": [
+        {
+            "source": "$workspace/package.json",
+            "destination": "/opt/html-converter-service/package.json"
+        },
         {
             "source": "$workspace/Dockerfile",
             "destination": "/docker-uploads/html-converter-service/Dockerfile"
