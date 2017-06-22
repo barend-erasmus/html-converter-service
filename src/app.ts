@@ -1,5 +1,7 @@
 // Imports
 import express = require("express");
+import * as fs from 'fs';
+import * as swaggerUi from 'swagger-ui-express';
 
 // Imports middleware
 import * as cors from 'cors';
@@ -7,7 +9,7 @@ import bodyParser = require('body-parser');
 import expressWinston = require('express-winston');
 
 // Imports routes
-import { HtmlConverterRouter } from './routes/htmlConverter';
+import { ConvertRouter } from './routes/convert';
 
 // Imports logger
 import { logger } from './logger';
@@ -55,8 +57,10 @@ export class WebApi {
     }
 
     private configureRoutes(app: express.Express) {
-        app.post('/api/htmlconverter/convertpdf', HtmlConverterRouter.convertPdf);
-        app.post('/api/htmlconverter/convertpng', HtmlConverterRouter.convertPng);
+        app.post('/api/convert/topdf', ConvertRouter.toPdf);
+        app.post('/api/convert/topng', ConvertRouter.toPng);
+
+        app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(JSON.parse(fs.readFileSync(__dirname + '/swagger.json', 'utf-8'))));
     }
 
     private configureErrorHandling(app: express.Express) {

@@ -9,7 +9,7 @@ import { WebApi } from './app';
 
 let api;
 
-describe('POST /api/htmlconverter/convertpdf', function() {
+describe('POST /api/convert/topdf', function() {
   this.timeout(20000);
 
   beforeEach(() => {
@@ -18,7 +18,7 @@ describe('POST /api/htmlconverter/convertpdf', function() {
 
   it('should respond with status code 200 given html', (done: () => void) => {
     request(api.getApp())
-      .post('/api/htmlconverter/convertpdf')
+      .post('/api/convert/topdf')
       .send({
         html: '<p>Hello World</p>',
       })
@@ -26,7 +26,7 @@ describe('POST /api/htmlconverter/convertpdf', function() {
   });
 });
 
-describe('POST /api/htmlconverter/convertpng', function() {
+describe('POST /api/convert/topng', function() {
   this.timeout(20000);
 
   beforeEach(() => {
@@ -35,7 +35,7 @@ describe('POST /api/htmlconverter/convertpng', function() {
 
   it('should respond with status code 200 given html', (done: () => void) => {
     request(api.getApp())
-      .post('/api/htmlconverter/convertpng')
+      .post('/api/convert/topng')
       .send({
         html: '<p>Hello World</p>',
       })

@@ -17,9 +17,9 @@ if (argv.prod) {
 // Imports logger
 import { logger } from './../logger';
 
-export class HtmlConverterRouter {
+export class ConvertRouter {
 
-    public static convertPdf(req: Request, res: Response, next: () => void) {
+    public static toPdf(req: Request, res: Response, next: () => void) {
 
         const html = req.body.html;
 
@@ -33,7 +33,7 @@ export class HtmlConverterRouter {
         });
     }
 
-    public static convertPng(req: Request, res: Response, next: () => void) {
+    public static toPng(req: Request, res: Response, next: () => void) {
 
         const html = req.body.html;
 

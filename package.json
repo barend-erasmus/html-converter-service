@@ -25,6 +25,7 @@
     "express-winston": "^2.3.0",
     "mssql": "^4.0.1",
     "phantom-html-to-pdf": "^0.5.0",
+    "swagger-ui-express": "^2.0.0",
     "webshot": "^0.18.0",
     "winston": "^2.3.1",
     "yargs": "^8.0.1"

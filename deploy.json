@@ -13,12 +13,12 @@
         "docker stop html-converter-service",
         "docker rm html-converter-service",
         "docker build --no-cache -t html-converter-service /docker-uploads/html-converter-service",
-        "docker run -d -p 8080:3000 --name html-converter-service -v /logs:/logs -v /opt/html-converter-service:/opt/html-converter-service -t html-converter-service"
+        "docker run -d -p 8082:3000 --name html-converter-service -v /logs:/logs -v /opt/html-converter-service:/opt/html-converter-service -t html-converter-service"
     ],
     "directories": [
         {
             "source": "$workspace/src",
-            "destination": "/opt/html-converter-service"
+            "destination": "/opt/html-converter-service/src"
         }
     ],
     "files": [
