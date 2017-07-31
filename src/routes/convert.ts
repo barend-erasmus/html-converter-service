@@ -22,7 +22,7 @@ export class ConvertRouter {
      * @apiParam {Number} right Right offset
      *
      * @apiSuccess {Binary} binary Binary PDF file bytes
-     * 
+     *
      * @apiErrorExample {json} Error-Response:
      *      HTTP/1.1 400 Bad Request
      *      {
@@ -35,12 +35,12 @@ export class ConvertRouter {
 
         const pdfConverterService = ServiceFactory.getPdfConverterService(req.body.top | 0, req.body.bottom | 0, req.body.left | 0, req.body.right | 0);
 
-        pdfConverterService.convert(html).then((stream: stream.Stream) => {
-            stream.pipe(res);
+        pdfConverterService.convert(html).then((resultStream: stream.Stream) => {
+            resultStream.pipe(res);
         }).catch((err: Error) => {
             logger.error(err.message);
             res.status(400).send({
-                message: err.message
+                message: err.message,
             });
         });
     }
@@ -57,7 +57,7 @@ export class ConvertRouter {
      * @apiParam {Number} right Right offset
      *
      * @apiSuccess {Binary} binary Binary PNG file bytes
-     * 
+     *
      * @apiErrorExample {json} Error-Response:
      *      HTTP/1.1 400 Bad Request
      *      {
@@ -70,12 +70,12 @@ export class ConvertRouter {
 
         const pngConverterService = ServiceFactory.getPngConverterService(req.body.top | 0, req.body.bottom | 0, req.body.left | 0, req.body.right | 0);
 
-        pngConverterService.convert(html).then((stream: stream.Stream) => {
-            stream.pipe(res);
+        pngConverterService.convert(html).then((resultStream: stream.Stream) => {
+            resultStream.pipe(res);
         }).catch((err: Error) => {
             logger.error(err.message);
             res.status(400).send({
-                message: err.message
+                message: err.message,
             });
         });
     }

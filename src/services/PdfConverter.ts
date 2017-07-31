@@ -1,5 +1,6 @@
 // Imports
 import * as base64 from 'base64-stream';
+import * as juice from 'juice';
 import * as phantom from 'phantom-html-to-pdf';
 import * as stream from 'stream';
 
@@ -27,20 +28,18 @@ export class PdfConverter extends IConverter {
     }
 
     public convert(html: string): Promise<stream.Stream> {
+        html = juice(html);
+
+        html = html.replace(/<style>(.|\n)*?<\/style>/g, '');
 
         return this.convertToPdf(html);
-
-        // const pngConverter = new PngConverter(this.shotSize.top, this.shotSize.bottom, this.shotSize.left, this.shotSize.right);
-        // return pngConverter.convert(html).then((result: stream.Stream) => {
-        //     return this.streamToString(result);
-        // }).then((result: string) => {
-        //     return this.convertToPdf(`<img width="100%" src="data:image/png;base64,${result}"></img>`);
-        // });
     }
 
     private convertToPdf(html: string): Promise<stream.Stream> {
         return new Promise((resolve: (strm: stream.Stream) => void, reject: (err: Error) => void) => {
-            phantomConverter({ html }, (err: Error, pdf: any) => {
+            phantomConverter({
+                html,
+            }, (err: Error, pdf: any) => {
                 if (err) {
                     reject(err);
                     return;

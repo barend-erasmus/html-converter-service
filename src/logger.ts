@@ -1,14 +1,15 @@
 // Imports
 import * as path from 'path';
 import * as winston from 'winston';
+import * as yargs from 'yargs';
 
-const argv = require('yargs').argv;
+const argv = yargs.argv;
 
 const logger = new (winston.Logger)({
   transports: [
     new (winston.transports.Console)({ level: 'debug' }),
     new (winston.transports.File)({
-      filename: path.join(argv.prod? '/logs/' : './', 'html-converter-service.log'),
+      filename: path.join(argv.prod ? '/logs/' : './', 'html-converter-service.log'),
       level: 'debug',
     }),
   ],

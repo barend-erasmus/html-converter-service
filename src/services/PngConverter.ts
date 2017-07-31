@@ -34,7 +34,7 @@ export class PngConverter extends IConverter {
         return new Promise((resolve: (strm: stream.Stream) => void, reject: (err: Error) => void) => {
 
             const id = uuid.v4();
-            const tempPath = path.join(argv.prod? './temp' : './src/temp', id + '.png');
+            const tempPath = path.join(argv.prod ? './temp' : './src/temp', id + '.png');
 
             webshot(html, tempPath, {
                 defaultWhiteBackground: true,
