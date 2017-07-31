@@ -5,15 +5,9 @@ import * as path from 'path';
 import * as stream from 'stream';
 import * as uuid from 'uuid';
 import * as webshot from 'webshot';
+import * as yargs from 'yargs';
 
-// Import configurations
-let config = require('./../config').config;
-
-const argv = require('yargs').argv;
-
-if (argv.prod) {
-  config = require('./../config.prod').config;
-}
+const argv = yargs.argv;
 
 import { IConverter } from './IConverter';
 
@@ -40,7 +34,7 @@ export class PngConverter extends IConverter {
         return new Promise((resolve: (strm: stream.Stream) => void, reject: (err: Error) => void) => {
 
             const id = uuid.v4();
-            const tempPath = path.join(config.tempPath, id + '.png');
+            const tempPath = path.join(argv.prod? './temp' : './src/temp', id + '.png');
 
             webshot(html, tempPath, {
                 defaultWhiteBackground: true,

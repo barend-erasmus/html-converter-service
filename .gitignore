@@ -60,4 +60,5 @@ typings/
 *.js
 *.js.map
 
-temp
+temp/
+apidoc/

@@ -5,15 +5,6 @@ import * as stream from 'stream';
 // Imports services
 import { IConverter } from './IConverter';
 
-// Import configurations
-let config = require('./../config').config;
-
-const argv = require('yargs').argv;
-
-if (argv.prod) {
-  config = require('./../config.prod').config;
-}
-
 describe('IConverter', () => {
 
     let converter: MockConverter = null;

@@ -1,15 +1,6 @@
 // Imports
 import * as stream from 'stream';
 
-// Import configurations
-let config = require('./../config').config;
-
-const argv = require('yargs').argv;
-
-if (argv.prod) {
-  config = require('./../config.prod').config;
-}
-
 export abstract class IConverter {
 
     public convert(html: string): Promise<stream.Stream> {

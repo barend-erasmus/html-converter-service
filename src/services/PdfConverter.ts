@@ -28,13 +28,14 @@ export class PdfConverter extends IConverter {
 
     public convert(html: string): Promise<stream.Stream> {
 
-        const pngConverter = new PngConverter(this.shotSize.top, this.shotSize.bottom, this.shotSize.left, this.shotSize.right);
+        return this.convertToPdf(html);
 
-        return pngConverter.convert(html).then((result: stream.Stream) => {
-            return this.streamToString(result);
-        }).then((result: string) => {
-            return this.convertToPdf(`<img width="100%" src="data:image/png;base64,${result}"></img>`);
-        });
+        // const pngConverter = new PngConverter(this.shotSize.top, this.shotSize.bottom, this.shotSize.left, this.shotSize.right);
+        // return pngConverter.convert(html).then((result: stream.Stream) => {
+        //     return this.streamToString(result);
+        // }).then((result: string) => {
+        //     return this.convertToPdf(`<img width="100%" src="data:image/png;base64,${result}"></img>`);
+        // });
     }
 
     private convertToPdf(html: string): Promise<stream.Stream> {

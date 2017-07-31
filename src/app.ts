@@ -1,12 +1,12 @@
 // Imports
-import express = require("express");
-import * as fs from 'fs';
-import * as swaggerUi from 'swagger-ui-express';
+import * as express from "express";
+import * as path from 'path';
+import * as yargs from 'yargs';
 
 // Imports middleware
+import * as bodyParser from 'body-parser';
 import * as cors from 'cors';
-import bodyParser = require('body-parser');
-import expressWinston = require('express-winston');
+import * as expressWinston from 'express-winston';
 
 // Imports routes
 import { ConvertRouter } from './routes/convert';
@@ -14,14 +14,7 @@ import { ConvertRouter } from './routes/convert';
 // Imports logger
 import { logger } from './logger';
 
-// Import configurations
-let config = require('./config').config;
-
-const argv = require('yargs').argv;
-
-if (argv.prod) {
-  config = require('./config.prod').config;
-}
+const argv = yargs.argv;
 
 export class WebApi {
 
@@ -60,7 +53,8 @@ export class WebApi {
         app.post('/api/convert/topdf', ConvertRouter.toPdf);
         app.post('/api/convert/topng', ConvertRouter.toPng);
 
-        app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(JSON.parse(fs.readFileSync(__dirname + '/swagger.json', 'utf-8'))));
+        app.use('/api/docs', express.static(path.join(__dirname, './../apidoc')));
+        app.use('/api/coverage', express.static(path.join(__dirname, './../coverage/lcov-report')));
     }
 
     private configureErrorHandling(app: express.Express) {
@@ -71,8 +65,7 @@ export class WebApi {
     }
 }
 
-const port = 3000;
-const api = new WebApi(express(), port);
+const api = new WebApi(express(), argv.port || 3000);
 api.run();
 
-logger.info(`Listening on ${port}`);
+logger.info(`lstening on ${argv.port || 3000}`);
