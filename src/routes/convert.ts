@@ -11,7 +11,7 @@ import { logger } from './../logger';
 export class ConvertRouter {
 
     /**
-     * @api {post} /api/convert/topdf Get Convert HTML to PDF
+     * @api {post} /api/convert/topdf Convert HTML to PDF
      * @apiName ConvertToPdf
      * @apiGroup Convert
      *
@@ -46,7 +46,7 @@ export class ConvertRouter {
     }
 
     /**
-     * @api {post} /api/convert/topng Get Convert HTML to PNG
+     * @api {post} /api/convert/topng Convert HTML to PNG
      * @apiName ConvertToPng
      * @apiGroup Convert
      *
