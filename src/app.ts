@@ -55,6 +55,8 @@ export class WebApi {
 
         app.use('/api/docs', express.static(path.join(__dirname, './../apidoc')));
         app.use('/api/coverage', express.static(path.join(__dirname, './../coverage/lcov-report')));
+
+        app.use('/', express.static(path.join(__dirname, './views')));
     }
 
     private configureErrorHandling(app: express.Express) {
