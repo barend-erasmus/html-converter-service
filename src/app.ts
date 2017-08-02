@@ -70,4 +70,4 @@ export class WebApi {
 const api = new WebApi(express(), argv.port || 3000);
 api.run();
 
-logger.info(`lstening on ${argv.port || 3000}`);
+logger.info(`listening on ${argv.port || 3000}`);
