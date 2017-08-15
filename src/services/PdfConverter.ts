@@ -39,6 +39,7 @@ export class PdfConverter extends IConverter {
         return new Promise((resolve: (strm: stream.Stream) => void, reject: (err: Error) => void) => {
             phantomConverter({
                 html,
+                fitToPage: true,
             }, (err: Error, pdf: any) => {
                 if (err) {
                     reject(err);
