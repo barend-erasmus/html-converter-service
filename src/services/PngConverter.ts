@@ -29,7 +29,7 @@ export class PngConverter extends IConverter {
         this.shotSize.right = right;
     }
 
-    public convert(html: string): Promise<stream.Stream> {
+    public convert(html: string, footer: string): Promise<stream.Stream> {
 
         return new Promise((resolve: (strm: stream.Stream) => void, reject: (err: Error) => void) => {
 

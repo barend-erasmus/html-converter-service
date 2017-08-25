@@ -3,7 +3,7 @@ import * as stream from 'stream';
 
 export abstract class IConverter {
 
-    public convert(html: string): Promise<stream.Stream> {
+    public convert(html: string, footer: string): Promise<stream.Stream> {
         throw new Error('Not Implemented Yet');
     }
 

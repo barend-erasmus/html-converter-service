@@ -27,19 +27,20 @@ export class PdfConverter extends IConverter {
         this.shotSize.right = right;
     }
 
-    public convert(html: string): Promise<stream.Stream> {
+    public convert(html: string, footer: string): Promise<stream.Stream> {
         html = juice(html);
 
         html = html.replace(/<style>(.|\n)*?<\/style>/g, '');
 
-        return this.convertToPdf(html);
+        return this.convertToPdf(html, footer);
     }
 
-    private convertToPdf(html: string): Promise<stream.Stream> {
+    private convertToPdf(html: string, footer: string): Promise<stream.Stream> {
         return new Promise((resolve: (strm: stream.Stream) => void, reject: (err: Error) => void) => {
             phantomConverter({
                 html,
                 fitToPage: true,
+                footer,
             }, (err: Error, pdf: any) => {
                 if (err) {
                     reject(err);

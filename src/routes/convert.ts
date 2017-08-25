@@ -16,6 +16,7 @@ export class ConvertRouter {
      * @apiGroup Convert
      *
      * @apiParam {String} html HTML
+     * @apiParam {String} footer Footer HTML
      * @apiParam {Number} top Top offset
      * @apiParam {Number} bottom Bottom offset
      * @apiParam {Number} left Left offset
@@ -32,10 +33,11 @@ export class ConvertRouter {
     public static toPdf(req: Request, res: Response, next: () => void) {
 
         const html = req.body.html;
+        const footer = req.body.footer;
 
         const pdfConverterService = ServiceFactory.getPdfConverterService(req.body.top | 0, req.body.bottom | 0, req.body.left | 0, req.body.right | 0);
 
-        pdfConverterService.convert(html).then((resultStream: stream.Stream) => {
+        pdfConverterService.convert(html, footer).then((resultStream: stream.Stream) => {
             resultStream.pipe(res);
         }).catch((err: Error) => {
             logger.error(err.message);
@@ -70,7 +72,7 @@ export class ConvertRouter {
 
         const pngConverterService = ServiceFactory.getPngConverterService(req.body.top | 0, req.body.bottom | 0, req.body.left | 0, req.body.right | 0);
 
-        pngConverterService.convert(html).then((resultStream: stream.Stream) => {
+        pngConverterService.convert(html, undefined).then((resultStream: stream.Stream) => {
             resultStream.pipe(res);
         }).catch((err: Error) => {
             logger.error(err.message);
