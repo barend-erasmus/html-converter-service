@@ -9,7 +9,7 @@ const logger = new (winston.Logger)({
   transports: [
     new (winston.transports.Console)({ level: 'debug' }),
     new (winston.transports.File)({
-      filename: path.join(argv.prod ? '/logs/' : './', 'html-converter-service.log'),
+      filename: path.join(__dirname, 'html-converter-service.log'),
       level: 'debug',
     }),
   ],
