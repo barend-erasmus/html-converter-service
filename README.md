@@ -2,10 +2,10 @@
 
 ## Getting Started
 
-* [Demo](https://developersworkspace.co.za/projects/html-converter)
-* [API Documentation](https://html-converter.openservices.co.za/api/docs/)
+* [Demo](http://developersworkspace.co.za/projects/html-converter)
+* [API Documentation](http://html-converter.openservices.co.za/api/docs/)
 * [Source Code](https://github.com/barend-erasmus/html-converter-service)
-* [Coverage Report](https://html-converter.openservices.co.za/api/coverage/)
+* [Coverage Report](http://html-converter.openservices.co.za/api/coverage/)
 
 ## Convert HTML to PDF
 
@@ -13,7 +13,7 @@
 
 ```javascript
 const xhr = new XMLHttpRequest();
-    xhr.open('POST', 'https://html-converter.openservices.co.za/api/convert/topdf', true);
+    xhr.open('POST', 'http://html-converter.openservices.co.za/api/convert/topdf', true);
     xhr.responseType = 'blob';
     xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
     xhr.onload = function (e) {
@@ -41,7 +41,7 @@ const xhr = new XMLHttpRequest();
 
 ```javascript
 const xhr = new XMLHttpRequest();
-    xhr.open('POST', 'https://html-converter.openservices.co.za/api/convert/topng', true);
+    xhr.open('POST', 'http://html-converter.openservices.co.za/api/convert/topng', true);
     xhr.responseType = 'blob';
     xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
     xhr.onload = function (e) {
