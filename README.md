@@ -2,7 +2,6 @@
 
 ## Getting Started
 
-* [Demo](http://developersworkspace.co.za/projects/html-converter)
 * [API Documentation](http://html-converter.openservices.co.za/api/docs/)
 * [Source Code](https://github.com/barend-erasmus/html-converter-service)
 * [Coverage Report](http://html-converter.openservices.co.za/api/coverage/)
